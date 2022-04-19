@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.MenuFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/userImgCardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/dark_gray"
+        app:strokeWidth="2dp">
+
+        <ImageView
+            android:id="@+id/imgUser"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_margin="10dp"
+            android:background="@color/white"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_user"
+            tools:ignore="TouchTargetSizeCheck" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Cool Dude"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userImgCardView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtName"/>
+
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:id="@+id/menuType"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="40dp"-->
+    <!--        android:background="@color/white"-->
+    <!--        android:clickable="true"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/txtName">-->
+
+    <!--        <com.google.android.material.card.MaterialCardView-->
+    <!--            android:id="@+id/notifications"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            app:cardElevation="0dp"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--            <ImageView-->
+    <!--                android:id="@+id/imgNotifications"-->
+    <!--                android:layout_width="50dp"-->
+    <!--                android:layout_height="50dp"-->
+    <!--                android:layout_gravity="left"-->
+    <!--                android:layout_marginStart="20dp"-->
+    <!--                android:layout_marginTop="15dp"-->
+    <!--                android:layout_marginBottom="15dp"-->
+    <!--                android:contentDescription="@string/notifications"-->
+    <!--                android:src="@drawable/ic_notification"-->
+    <!--                tools:ignore="RtlHardcoded" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/txtNotifications"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_gravity="center_vertical"-->
+    <!--                android:layout_marginStart="95dp"-->
+    <!--                android:text="@string/notifications"-->
+    <!--                android:textSize="18sp" />-->
+
+    <!--        </com.google.android.material.card.MaterialCardView>-->
+
+    <!--        <View-->
+    <!--            android:id="@+id/hr1"-->
+    <!--            android:layout_width="fill_parent"-->
+    <!--            android:layout_height="1dp"-->
+    <!--            android:background="@color/gray"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/notifications" />-->
+
+    <!--        <com.google.android.material.card.MaterialCardView-->
+    <!--            android:id="@+id/phoneNumber"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            app:cardElevation="0dp"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/hr1">-->
+
+    <!--            <ImageView-->
+    <!--                android:id="@+id/imgPhoneNumber"-->
+    <!--                android:layout_width="50dp"-->
+    <!--                android:layout_height="50dp"-->
+    <!--                android:layout_gravity="left"-->
+    <!--                android:layout_marginStart="20dp"-->
+    <!--                android:layout_marginTop="15dp"-->
+    <!--                android:layout_marginBottom="15dp"-->
+    <!--                android:contentDescription="@string/phone_number"-->
+    <!--                android:src="@drawable/ic_phone"-->
+    <!--                tools:ignore="RtlHardcoded" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/txtPhoneNumber"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_gravity="center_vertical"-->
+    <!--                android:layout_marginStart="95dp"-->
+    <!--                android:text="@string/phone_number"-->
+    <!--                android:textSize="18sp" />-->
+
+    <!--        </com.google.android.material.card.MaterialCardView>-->
+
+    <!--        <View-->
+    <!--            android:id="@+id/hr2"-->
+    <!--            android:layout_width="fill_parent"-->
+    <!--            android:layout_height="1dp"-->
+    <!--            android:background="@color/gray"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />-->
+
+    <!--        <com.google.android.material.card.MaterialCardView-->
+    <!--            android:id="@+id/changePassword"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            app:cardElevation="0dp"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/hr2">-->
+
+    <!--            <ImageView-->
+    <!--                android:id="@+id/imgChangePassword"-->
+    <!--                android:layout_width="50dp"-->
+    <!--                android:layout_height="50dp"-->
+    <!--                android:layout_gravity="left"-->
+    <!--                android:layout_marginStart="20dp"-->
+    <!--                android:layout_marginTop="15dp"-->
+    <!--                android:layout_marginBottom="15dp"-->
+    <!--                android:contentDescription="@string/change_password"-->
+    <!--                android:src="@drawable/ic_lock"-->
+    <!--                tools:ignore="RtlHardcoded" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/txtChangePassword"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_gravity="center_vertical"-->
+    <!--                android:layout_marginStart="95dp"-->
+    <!--                android:text="@string/change_password"-->
+    <!--                android:textSize="18sp" />-->
+
+    <!--        </com.google.android.material.card.MaterialCardView>-->
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/button"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Button"-->
+    <!--        android:backgroundTint="@color/white"-->
+    <!--        android:drawableStart="@drawable/ic_notification"-->
+    <!--        android:drawablePadding="-15sp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/txtName" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

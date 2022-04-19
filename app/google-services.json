@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "732647732023",
+    "project_id": "mobile-bank-e5507",
+    "storage_bucket": "mobile-bank-e5507.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:732647732023:android:bcadb634554e27246ca0b2",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "732647732023-fburnp5nbvn91k7jrgih8uqfi51tsjau.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.project",
+            "certificate_hash": "cab4012b8802346cb43202ed72fdd673c88c035c"
+          }
+        },
+        {
+          "client_id": "732647732023-itv41smcppes7ihl4en1tcf70k5fi04g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9b0LnnyGol4JeM11K-KwERcjUg9lXduU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "732647732023-itv41smcppes7ihl4en1tcf70k5fi04g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

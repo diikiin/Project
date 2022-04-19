@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.project.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_paymentsFragment"
+            app:destination="@id/paymentsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_transfersFragment"
+            app:destination="@id/transfersFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_QRFragment"
+            app:destination="@id/QRFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transfersFragment"
+        android:name="com.example.project.fragments.TransfersFragment"
+        android:label="fragment_transfers"
+        tools:layout="@layout/fragment_transfers" />
+    <fragment
+        android:id="@+id/paymentsFragment"
+        android:name="com.example.project.fragments.PaymentsFragment"
+        android:label="fragment_payments"
+        tools:layout="@layout/fragment_payments" >
+<!--        <action-->
+<!--            android:id="@+id/action_paymentsFragment_to_homeFragment"-->
+<!--            app:destination="@id/homeFragment" />-->
+    </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.project.fragments.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" />
+    <fragment
+        android:id="@+id/QRFragment"
+        android:name="com.example.project.fragments.QRFragment"
+        android:label="fragment_qr"
+        tools:layout="@layout/fragment_qr" />
+    <!--    <fragment-->
+<!--        android:id="@+id/transfersHistoryFragment"-->
+<!--        android:name="com.example.project.fragments.TransfersHistoryFragment"-->
+<!--        android:label="fragment_transfers_history"-->
+<!--        tools:layout="@layout/fragment_transfers_history" />-->
+</navigation>
