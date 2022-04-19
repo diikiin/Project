@@ -24,7 +24,11 @@
         android:id="@+id/transfersFragment"
         android:name="com.example.project.fragments.TransfersFragment"
         android:label="fragment_transfers"
-        tools:layout="@layout/fragment_transfers" />
+        tools:layout="@layout/fragment_transfers" >
+        <action
+            android:id="@+id/action_transfersFragment_to_transferToClientFragment"
+            app:destination="@id/transferToClientFragment" />
+    </fragment>
     <fragment
         android:id="@+id/paymentsFragment"
         android:name="com.example.project.fragments.PaymentsFragment"
@@ -44,6 +48,11 @@
         android:name="com.example.project.fragments.QRFragment"
         android:label="fragment_qr"
         tools:layout="@layout/fragment_qr" />
+    <fragment
+        android:id="@+id/transferToClientFragment"
+        android:name="com.example.project.fragments.TransferToClientFragment"
+        android:label="fragment_transfer_to_client"
+        tools:layout="@layout/fragment_transfer_to_client" />
     <!--    <fragment-->
 <!--        android:id="@+id/transfersHistoryFragment"-->
 <!--        android:name="com.example.project.fragments.TransfersHistoryFragment"-->

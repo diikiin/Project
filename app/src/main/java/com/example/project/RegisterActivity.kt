@@ -71,20 +71,13 @@ class RegisterActivity : AppCompatActivity() {
                     if (snapshot.value != null) {
                         firebaseAuth.createUserWithEmailAndPassword(email, password)
                             .addOnSuccessListener {
-                                startActivity(
-                                    Intent(
-                                        this@RegisterActivity,
-                                        MainActivity::class.java
-                                    )
-                                )
+                                startActivity(Intent(this@RegisterActivity,
+                                    MainActivity::class.java))
                                 finish()
                             }
                             .addOnFailureListener { e ->
-                                Toast.makeText(
-                                    this@RegisterActivity,
-                                    "${e.message}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                Toast.makeText(this@RegisterActivity, "${e.message}",
+                                    Toast.LENGTH_SHORT).show()
                             }
                     } else {
                         val error = "Client with this phone number does not exist"
@@ -96,6 +89,5 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.makeText(this@RegisterActivity, error.message, Toast.LENGTH_SHORT).show()
                 }
             })
-
     }
 }

@@ -20,16 +20,9 @@
     <string name="tenge_sign">Tenge Sign</string>
     <string name="bonus_sign">Bonus Sign</string>
     <string name="get_history">Get History</string>
-    <string name="between_my_accounts">Between My Accounts</string>
-    <string name="to_client">To Client</string>
-    <string name="to_my_account">To My Account</string>
-    <string name="to_dikin_client">To Dikin Client</string>
-    <string name="to_another_bank">To Another Bank</string>
     <string name="frequent">Frequent</string>
     <string name="favourites">Favourites</string>
-    <string name="notifications">Notifications</string>
     <string name="phone_number">Phone number</string>
-    <string name="change_password">Change password</string>
     <string name="search_hint">Search here</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -46,12 +39,14 @@
     <string name="register">Register</string>
     <string name="repeat_password">Repeat Password</string>
     <string name="email">Email</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="card_number">* card number</string>
     <string name="_0">0</string>
     <string name="bonus_icon">Bonus icon</string>
-    <string name="cool_dude">Cool Dude</string>
+    <string name="transfer_name">Transfer name</string>
+    <string name="button_name">Button name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="to_dikin_client">To Dikin Client</string>
+    <string name="recipient_s_phone_number">Recipient\'s phone number</string>
+    <string name="transfer">Transfer</string>
 </resources>

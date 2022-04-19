@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.project.ButtonAdapter
@@ -15,7 +16,7 @@ import com.example.project.databinding.FragmentTransfersBinding
 
 
 class TransfersFragment : Fragment(), ButtonAdapter.Listener {
-    private var _binding: FragmentTransfersBinding?=null
+    private var _binding: FragmentTransfersBinding? = null
     private val binding get() = _binding!!
 
     private val buttonList = ArrayList(
@@ -52,9 +53,20 @@ class TransfersFragment : Fragment(), ButtonAdapter.Listener {
 
     override fun onClick(button: RecyclerButton) {
         when (button.title) {
-            "Between my accounts" -> Toast.makeText(activity, "Phone number", Toast.LENGTH_SHORT).show()
-            "To Dikin Client" -> Toast.makeText(activity, "Phone number", Toast.LENGTH_SHORT).show()
-            "To another bank card" -> Toast.makeText(activity, "Change password", Toast.LENGTH_SHORT)
+            "Between my accounts" -> Toast.makeText(
+                activity,
+                "Between my accounts",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            "To Dikin Client" -> NavHostFragment.findNavController(this)
+                .navigate(R.id.action_transfersFragment_to_transferToClientFragment)
+
+            "To another bank card" -> Toast.makeText(
+                activity,
+                "To another bank card",
+                Toast.LENGTH_SHORT
+            )
                 .show()
         }
     }

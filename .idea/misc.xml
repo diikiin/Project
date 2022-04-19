@@ -42,8 +42,10 @@
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_payments.xml" value="0.264" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_qr.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_tabbed.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_transfer_to_client.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_transfers.xml" value="0.264" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_transfers_history.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/frequent_transfers_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/main_screen.xml" value="0.2" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/rc_button_item.xml" value="0.264" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/search.xml" value="0.1" />
