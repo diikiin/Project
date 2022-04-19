@@ -36,33 +36,35 @@ class HomeFragment : Fragment() {
         database = Firebase.database.reference
         actions()
         firebaseAuth = FirebaseAuth.getInstance()
-        database.child(USER_KEY).child(firebaseAuth.currentUser?.uid.toString()).get().addOnSuccessListener {
-            if (it.child("bonus").exists()) {
-                binding.txtBonusValue.text = it.child("bonus").value.toString()
-            } else
-                binding.txtBonusValue.text = "0"
+        val user = firebaseAuth.currentUser?.email.toString().removeSuffix("@gmail.com")
+        database.child(USER_KEY).child(user).get().addOnSuccessListener { it ->
+            binding.txtBonusValue.text = it.child("bonus").value.toString()
+
+            val textCard = it.child("cardId").value.toString()
+            binding.txtCardCode.text = textCard.replaceRange(0, 14, "*")
+            database.child(CARD_KEY).child(textCard).get().addOnSuccessListener {
+                binding.txtCardValue.text = it.value.toString()
+            }
         }
 
-
-        binding.addToDB.setOnClickListener {
+//        binding.addToDB.setOnClickListener {
 //            val user = Firebase.auth.currentUser?.email.toString().removeSuffix("@gmail.com")
-//            val client = Client("Dauren", "Kabyl", 20)
+//            val client = Client("Daniyar", "Nurzhanov", 45, "1234 5687 9999 0000")
 //            client.bonus = 100
-//            database.child(USER_KEY).child(user).setValue(client).addOnSuccessListener {
+//            database.child(USER_KEY).child("+77025559900").setValue(client).addOnSuccessListener {
 //                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
 //            }.addOnFailureListener {
 //                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
 //            }
 
-            database.child(CARD_KEY).child("1234 5687 1111 2222").setValue(100000).addOnSuccessListener {
-                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener {
-                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
-            }
-        }
+//            database.child(CARD_KEY).child("1234 5687 1111 2222").setValue(100000).addOnSuccessListener {
+//                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
+//            }.addOnFailureListener {
+//                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
+//            }
+//        }
         return binding.root
     }
-
 
     private fun actions() = with(binding) {
         imgQR.setOnClickListener {
@@ -70,12 +72,9 @@ class HomeFragment : Fragment() {
                 .navigate(R.id.action_homeFragment_to_QRFragment)
         }
         imgPayments.setOnClickListener {
-//            Navigation.findNavController(this.root).navigate(R.id.action_homeFragment_to_paymentsFragment)
             NavHostFragment.findNavController(this@HomeFragment)
                 .navigate(R.id.action_homeFragment_to_paymentsFragment)
-
         }
 
     }
-
 }

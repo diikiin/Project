@@ -50,7 +50,7 @@
             android:layout_marginEnd="25dp"
             android:background="@color/white"
             android:ems="10"
-            android:hint="@string/email"
+            android:hint="@string/phone_number"
             android:inputType="phone"
             android:textSize="24sp" />
     </com.google.android.material.textfield.TextInputLayout>

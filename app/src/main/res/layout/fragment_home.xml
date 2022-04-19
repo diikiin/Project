@@ -197,7 +197,8 @@
             android:src="@drawable/ic_bonus_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/bonus_icon" />
 
         <TextView
             android:id="@+id/txtBonus"
@@ -227,7 +228,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="3dp"
             android:textSize="26sp"
-            android:text="0"
+            android:text="@string/_0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imgBonus"
             app:layout_constraintTop_toTopOf="parent" />
@@ -296,7 +297,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            android:text="* 5469"
+            android:text="@string/card_number"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/txtCardName"
             app:layout_constraintTop_toBottomOf="@+id/txtCardName" />
@@ -313,25 +314,25 @@
             android:contentDescription="@string/tenge_sign" />
 
         <TextView
-            android:id="@+id/txtView3"
+            android:id="@+id/txtCardValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="3dp"
             android:textSize="26sp"
-            android:text="0"
+            android:text="@string/_0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imgTenge"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/addToDB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myBankLayout" />
+<!--    <Button-->
+<!--        android:id="@+id/addToDB"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Button"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/myBankLayout" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

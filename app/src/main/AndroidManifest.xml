@@ -26,19 +26,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- <activity -->
-        <!-- android:name=".TransfersActivity" -->
-        <!-- android:exported="false" -->
-        <!-- android:label="@string/transfers" -->
-        <!-- android:theme="@style/Theme.Project.NoActionBar" /> -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
-<!--                <action android:name="android.intent.action.MAIN" />-->
                 <action android:name="android.intent.action.SEARCH" />
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
             </intent-filter>
 
             <meta-data
