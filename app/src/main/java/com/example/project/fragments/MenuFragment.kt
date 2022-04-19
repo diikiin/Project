@@ -23,24 +23,45 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.project.*
 import com.example.project.databinding.FragmentMenuBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class MenuFragment : Fragment(), ButtonAdapter.Listener {
     private var _binding: FragmentMenuBinding? = null
 
     private val binding get() = _binding!!
 
-    private val adapter = ButtonAdapter(this)
+    private val buttonList = ArrayList(
+        listOf(
+            RecyclerButton(R.drawable.ic_notification, "Notifications"),
+            RecyclerButton(R.drawable.ic_phone, "Phone number"),
+            RecyclerButton(R.drawable.ic_lock, "Change password"),
+            RecyclerButton(R.drawable.ic_exit, "Sign out")
+        )
+    )
+
+    private val adapter = ButtonAdapter(this, buttonList)
 
     private val CHANNEL_ID = "channel_id_01"
     private val notificationId = 101
 
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var database: DatabaseReference
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMenuBinding.inflate(inflater, container, false)
+        firebaseAuth = FirebaseAuth.getInstance()
+        database = Firebase.database.reference
+        val user = firebaseAuth.currentUser?.email.toString().removeSuffix("@gmail.com")
+        database.child(DBKeys.Users.toString()).child(user).get().addOnSuccessListener {
+            binding.txtName.text = it.child("firstName").value.toString() + ' ' +
+                    it.child("lastName").value.toString()
+        }
         init()
         createNotificationChannel()
         return binding.root
@@ -106,8 +127,7 @@ class MenuFragment : Fragment(), ButtonAdapter.Listener {
         }
     }
 
-    private fun signOut(){
-        firebaseAuth = FirebaseAuth.getInstance()
+    private fun signOut() {
         firebaseAuth.signOut()
         checkUser()
     }

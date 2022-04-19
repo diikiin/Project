@@ -21,6 +21,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
+
     private var email = ""
     private var password = ""
     private var password2 = ""
@@ -64,7 +65,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun firebaseRegister() {
         val text = email.removeSuffix("@gmail.com")
-        database.child("Users").child(text)
+        database.child(DBKeys.Users.toString()).child(text)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.value != null) {

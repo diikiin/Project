@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.NavHostFragment
 import com.example.project.Card
 import com.example.project.Client
+import com.example.project.DBKeys
 import com.example.project.R
 import com.example.project.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -25,9 +26,6 @@ class HomeFragment : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
 
-    private val USER_KEY = "Users"
-    private val CARD_KEY = "Cards"
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,12 +35,12 @@ class HomeFragment : Fragment() {
         actions()
         firebaseAuth = FirebaseAuth.getInstance()
         val user = firebaseAuth.currentUser?.email.toString().removeSuffix("@gmail.com")
-        database.child(USER_KEY).child(user).get().addOnSuccessListener { it ->
+        database.child(DBKeys.Users.toString()).child(user).get().addOnSuccessListener { it ->
             binding.txtBonusValue.text = it.child("bonus").value.toString()
 
             val textCard = it.child("cardId").value.toString()
             binding.txtCardCode.text = textCard.replaceRange(0, 14, "*")
-            database.child(CARD_KEY).child(textCard).get().addOnSuccessListener {
+            database.child(DBKeys.Cards.toString()).child(textCard).get().addOnSuccessListener {
                 binding.txtCardValue.text = it.value.toString()
             }
         }

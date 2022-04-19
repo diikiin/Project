@@ -1,7 +1,6 @@
 package com.example.project
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,28 +8,26 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.project.databinding.RcButtonItemBinding
 
 
-class ButtonAdapter(val listener: Listener): RecyclerView.Adapter<ButtonAdapter.ButtonHolder>() {
-    private val buttonList = ArrayList(listOf(
-        RecyclerButton(R.drawable.ic_notification,"Notifications"),
-        RecyclerButton(R.drawable.ic_phone,"Phone number"),
-        RecyclerButton(R.drawable.ic_lock,"Change password"),
-        RecyclerButton(R.drawable.ic_exit,"Sign out")
-    ))
-
-    inner class ButtonHolder(item: View): RecyclerView.ViewHolder(item){
+class ButtonAdapter(
+    private val listener: Listener,
+    private val buttonList: ArrayList<RecyclerButton>
+) : RecyclerView.Adapter<ButtonAdapter.ButtonHolder>() {
+    inner class ButtonHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val binding = RcButtonItemBinding.bind(item)
+
         @SuppressLint("ClickableViewAccessibility", "ResourceAsColor")
-        fun bind(button: RecyclerButton, listener: Listener) = with(binding){
+        fun bind(button: RecyclerButton, listener: Listener) = with(binding) {
             imgCard.setImageResource(button.imageId)
             txtCard.text = button.title
-            itemView.setOnClickListener{
+            itemView.setOnClickListener {
                 listener.onClick(button)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ButtonHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.rc_button_item, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.rc_button_item, parent, false)
         return ButtonHolder(view)
     }
 
@@ -43,7 +40,7 @@ class ButtonAdapter(val listener: Listener): RecyclerView.Adapter<ButtonAdapter.
         return buttonList.size
     }
 
-    interface Listener{
+    interface Listener {
         fun onClick(button: RecyclerButton)
     }
 }
