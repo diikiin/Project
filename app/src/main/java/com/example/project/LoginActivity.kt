@@ -31,17 +31,14 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
+            finish()
         }
-
     }
 
-    private fun validateData(){
+    private fun validateData() {
         email = binding.phoneNumber.text.toString().trim() + "@gmail.com"
         password = binding.password.text.toString().trim()
 
-//        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-//            binding.phoneNumber.error = "Invalid phone number"
-//        }
         when {
             email == "@gmail.com" -> {
                 binding.phoneNumber.error = "Please enter a phone number"
@@ -55,12 +52,12 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun firebaseLogin(){
-        firebaseAuth.signInWithEmailAndPassword(email,password)
+    private fun firebaseLogin() {
+        firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnSuccessListener {
                 startMainActivity()
             }
-            .addOnFailureListener{ e->
+            .addOnFailureListener { e ->
                 Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
             }
     }

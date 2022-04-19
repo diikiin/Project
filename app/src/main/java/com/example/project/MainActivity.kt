@@ -3,12 +3,10 @@ package com.example.project
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.project.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
-
 
 class MainActivity : AppCompatActivity() {
 
