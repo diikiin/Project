@@ -31,31 +31,77 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        database = Firebase.database.reference
+        database = Firebase.database.getReference(DBKeys.Users.toString())
         actions()
         firebaseAuth = FirebaseAuth.getInstance()
         val user = firebaseAuth.currentUser?.email.toString().removeSuffix("@gmail.com")
-        database.child(DBKeys.Users.toString()).child(user).get().addOnSuccessListener { it ->
+        database.child(user).get().addOnSuccessListener { it ->
             binding.txtBonusValue.text = it.child("bonus").value.toString()
-
-            val textCard = it.child("cardId").value.toString()
+            val textCard = it.child("card").child("cardNumber").value.toString()
             binding.txtCardCode.text = textCard.replaceRange(0, 14, "*")
-            database.child(DBKeys.Cards.toString()).child(textCard).get().addOnSuccessListener {
-                binding.txtCardValue.text = it.value.toString()
-            }
+            binding.txtCardValue.text = it.child("card").child("balance").value.toString()
         }
 
 //        binding.addToDB.setOnClickListener {
-//            val user = Firebase.auth.currentUser?.email.toString().removeSuffix("@gmail.com")
-//            val client = Client("Daniyar", "Nurzhanov", 45, "1234 5687 9999 0000")
-//            client.bonus = 100
-//            database.child(USER_KEY).child("+77025559900").setValue(client).addOnSuccessListener {
+//            database.child("+77025559900").setValue(
+//                Client(
+//                    "Daniyar",
+//                    "Nurzhanov",
+//                    45,
+//                    Card("1234 5687 9999 0000", 100000),
+//                    bonus = 100
+//                )
+//            ).addOnSuccessListener {
 //                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
 //            }.addOnFailureListener {
 //                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
 //            }
-
-//            database.child(CARD_KEY).child("1234 5687 1111 2222").setValue(100000).addOnSuccessListener {
+//            database.child("+7777").setValue(
+//                Client(
+//                    "Dauren",
+//                    "Kabyl",
+//                    20,
+//                    Card("1234 5687 1111 2222", 100000),
+//                    bonus = 100
+//                )
+//            ).addOnSuccessListener {
+//                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
+//            }.addOnFailureListener {
+//                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
+//            }
+//            database.child("+77025557788").setValue(
+//                Client(
+//                    "Madina",
+//                    "Malikova",
+//                    67,
+//                    Card("1234 5687 7777 8888", 100000)
+//                )
+//            ).addOnSuccessListener {
+//                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
+//            }.addOnFailureListener {
+//                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
+//            }
+//            database.child("+77025555566").setValue(
+//                Client(
+//                    "Kabdol",
+//                    "Beiymbet",
+//                    35,
+//                    Card("1234 5687 5555 6666", 100000),
+//                    bonus = 100
+//                )
+//            ).addOnSuccessListener {
+//                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
+//            }.addOnFailureListener {
+//                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
+//            }
+//            database.child("+77025553344").setValue(
+//                Client(
+//                    "Aliya",
+//                    "Zaparova",
+//                    30,
+//                    Card("1234 5687 3333 4444", 100000)
+//                )
+//            ).addOnSuccessListener {
 //                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
 //            }.addOnFailureListener {
 //                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()

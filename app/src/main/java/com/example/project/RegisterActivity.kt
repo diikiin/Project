@@ -32,7 +32,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
-        database = Firebase.database.reference
+        database = Firebase.database.getReference(DBKeys.Users.toString())
 
         binding.btnRegister.setOnClickListener {
             validateData()
@@ -65,7 +65,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun firebaseRegister() {
         val text = email.removeSuffix("@gmail.com")
-        database.child(DBKeys.Users.toString()).child(text)
+        database.child(text)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.value != null) {

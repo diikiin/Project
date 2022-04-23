@@ -3,7 +3,7 @@ package com.example.project
 data class Client(val firstName: String? = null,
                   val lastName: String? = null,
                   var age: Int? = null,
-                  var cardId: String? = null,
+                  var card: Card? = null,
                   var bonus: Int? = 0,
                   var loanId: String? = null,
                   var depositId: String? = null,
