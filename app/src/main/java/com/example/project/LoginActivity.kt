@@ -8,13 +8,18 @@ import android.util.Patterns
 import android.widget.Toast
 import com.example.project.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
 
-    private lateinit var firebaseAuth: FirebaseAuth
-    private var email = ""
+//    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var database: DatabaseReference
+//    private var email = ""
+    private var phone = ""
     private var password = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +27,8 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        firebaseAuth = FirebaseAuth.getInstance()
+//        firebaseAuth = FirebaseAuth.getInstance()
+        database = Firebase.database.getReference(DBKeys.USERS)
         checkUser()
 
         binding.btnLogin.setOnClickListener {
@@ -36,11 +42,15 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun validateData() {
-        email = binding.phoneNumber.text.toString().trim() + "@gmail.com"
+//        email = binding.phoneNumber.text.toString().trim() + "@gmail.com"
+        phone = binding.phoneNumber.text.toString().trim()
         password = binding.password.text.toString().trim()
 
         when {
-            email == "@gmail.com" -> {
+//            email == "@gmail.com" -> {
+//                binding.phoneNumber.error = "Please enter a phone number"
+//            }
+            TextUtils.isEmpty(phone) -> {
                 binding.phoneNumber.error = "Please enter a phone number"
             }
             TextUtils.isEmpty(password) -> {
@@ -53,18 +63,43 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun firebaseLogin() {
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-            .addOnSuccessListener {
-                startMainActivity()
+        database.child(phone).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.value != null) {
+                    println(snapshot.value)
+                    if(snapshot.child("password").value.toString() == password){
+                        DBKeys.user = phone
+                        println(DBKeys.user)
+                        startMainActivity()
+                    }
+                    else{
+                        val error = "Incorrect password"
+                        Toast.makeText(this@LoginActivity, error, Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    val error = "Client with this phone number does not exist"
+                    Toast.makeText(this@LoginActivity, error, Toast.LENGTH_SHORT).show()
+                }
             }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@LoginActivity, error.message, Toast.LENGTH_SHORT).show()
             }
+        })
+
+//        firebaseAuth.signInWithEmailAndPassword(email, password)
+//            .addOnSuccessListener {
+//                startMainActivity()
+//            }
+//            .addOnFailureListener { e ->
+//                Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
+//            }
     }
 
     private fun checkUser() {
-        val firebaseUser = firebaseAuth.currentUser
-        if (firebaseUser != null) {
+//        val firebaseUser = firebaseAuth.currentUser
+        val user = DBKeys.user
+        if (user != null) {
             startMainActivity()
         }
     }

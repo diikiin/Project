@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.navigation.fragment.NavHostFragment
 import com.example.project.DBKeys
+import com.example.project.R
 import com.example.project.databinding.FragmentTransferToClientBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -35,7 +38,7 @@ class TransferToClientFragment : Fragment() {
     ): View {
         _binding = FragmentTransferToClientBinding.inflate(inflater, container, false)
         firebaseAuth = FirebaseAuth.getInstance()
-        database = Firebase.database.getReference(DBKeys.Users.toString())
+        database = Firebase.database.getReference(DBKeys.USERS)
         user = firebaseAuth.currentUser?.email.toString().removeSuffix("@gmail.com")
 
         database.child(user).get().addOnSuccessListener {
@@ -48,9 +51,6 @@ class TransferToClientFragment : Fragment() {
             client = binding.phoneNumber.text.toString()
 
             validateData()
-
-            binding.phoneNumber.text?.clear()
-            binding.amount.setText("0")
         }
 
         return binding.root
@@ -89,6 +89,11 @@ class TransferToClientFragment : Fragment() {
                             balance = it.child("card").child("balance").value.toString().toInt()
                             binding.txtCardValue.text = balance.toString()
                         }
+
+                        binding.amount.onEditorAction(EditorInfo.IME_ACTION_DONE)
+
+                        NavHostFragment.findNavController(this@TransferToClientFragment)
+                            .navigate(R.id.action_transferToClientFragment_to_transfersFragment)
                     } else {
                         val error = "Client with this phone number does not exist"
                         Toast.makeText(activity, error, Toast.LENGTH_SHORT).show()

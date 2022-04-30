@@ -18,24 +18,25 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.project.*
 import com.example.project.databinding.FragmentMenuBinding
 import com.google.firebase.auth.FirebaseAuth
+//import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 class MenuFragment : Fragment(), ButtonAdapter.Listener {
     private var _binding: FragmentMenuBinding? = null
-
     private val binding get() = _binding!!
 
     private val buttonList = ArrayList(
         listOf(
             RecyclerButton(R.drawable.ic_notification, "Notifications"),
-            RecyclerButton(R.drawable.ic_phone, "Phone number"),
+            RecyclerButton(R.drawable.ic_phone, "Change phone number"),
             RecyclerButton(R.drawable.ic_lock, "Change password"),
             RecyclerButton(R.drawable.ic_exit, "Sign out")
         )
@@ -46,7 +47,7 @@ class MenuFragment : Fragment(), ButtonAdapter.Listener {
     private val CHANNEL_ID = "channel_id_01"
     private val notificationId = 101
 
-    private lateinit var firebaseAuth: FirebaseAuth
+//    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
 
     @SuppressLint("SetTextI18n")
@@ -55,13 +56,13 @@ class MenuFragment : Fragment(), ButtonAdapter.Listener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMenuBinding.inflate(inflater, container, false)
-        firebaseAuth = FirebaseAuth.getInstance()
-        database = Firebase.database.reference
-        val user = firebaseAuth.currentUser?.email.toString().removeSuffix("@gmail.com")
-        database.child(DBKeys.Users.toString()).child(user).get().addOnSuccessListener {
+//        firebaseAuth = FirebaseAuth.getInstance()
+        database = Firebase.database.getReference(DBKeys.USERS)
+        database.child(DBKeys.user!!).get().addOnSuccessListener {
             binding.txtName.text = it.child("firstName").value.toString() + ' ' +
                     it.child("lastName").value.toString()
         }
+        binding.txtPhoneNumber.text = DBKeys.user
         init()
         createNotificationChannel()
         return binding.root
@@ -83,7 +84,8 @@ class MenuFragment : Fragment(), ButtonAdapter.Listener {
     override fun onClick(button: RecyclerButton) {
         when (button.title) {
             "Notifications" -> notificationDialog()
-            "Phone number" -> Toast.makeText(activity, "Phone number", Toast.LENGTH_SHORT).show()
+            "Change phone number" -> NavHostFragment.findNavController(this)
+                .navigate(R.id.action_menuFragment_to_enterPasswordFragment)
             "Change password" -> Toast.makeText(activity, "Change password", Toast.LENGTH_SHORT)
                 .show()
             "Sign out" -> signOutDialog()
@@ -120,15 +122,16 @@ class MenuFragment : Fragment(), ButtonAdapter.Listener {
     }
 
     private fun checkUser() {
-        val firebaseUser = firebaseAuth.currentUser
-        if (firebaseUser == null) {
+//        val firebaseUser = firebaseAuth.currentUser
+        if (DBKeys.user == null) {
             startActivity(Intent(activity, LoginActivity::class.java))
             activity?.finish()
         }
     }
 
     private fun signOut() {
-        firebaseAuth.signOut()
+//        firebaseAuth.signOut()
+        DBKeys.user = null
         checkUser()
     }
 

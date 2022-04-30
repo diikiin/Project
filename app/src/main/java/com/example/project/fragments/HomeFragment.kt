@@ -7,10 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.NavHostFragment
-import com.example.project.Card
-import com.example.project.Client
-import com.example.project.DBKeys
-import com.example.project.R
+import com.example.project.*
 import com.example.project.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -23,7 +20,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var firebaseAuth: FirebaseAuth
+//    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
 
     override fun onCreateView(
@@ -31,11 +28,12 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        database = Firebase.database.getReference(DBKeys.Users.toString())
+        database = Firebase.database.getReference(DBKeys.USERS)
         actions()
-        firebaseAuth = FirebaseAuth.getInstance()
-        val user = firebaseAuth.currentUser?.email.toString().removeSuffix("@gmail.com")
-        database.child(user).get().addOnSuccessListener { it ->
+        val user = DBKeys.user
+//        firebaseAuth = FirebaseAuth.getInstance()
+//        val user = firebaseAuth.currentUser?.email.toString().removeSuffix("@gmail.com")
+        database.child(user!!).get().addOnSuccessListener { it ->
             binding.txtBonusValue.text = it.child("bonus").value.toString()
             val textCard = it.child("card").child("cardNumber").value.toString()
             binding.txtCardCode.text = textCard.replaceRange(0, 14, "*")
@@ -62,7 +60,9 @@ class HomeFragment : Fragment() {
 //                    "Kabyl",
 //                    20,
 //                    Card("1234 5687 1111 2222", 100000),
-//                    bonus = 100
+//                    bonus = 100,
+//                    frequentTransfer = ArrayList(listOf(FrequentTransfer(R.drawable.ic_mastercard, "Wife", "+77025557788"))),
+//                    password = "admin123"
 //                )
 //            ).addOnSuccessListener {
 //                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
@@ -72,8 +72,8 @@ class HomeFragment : Fragment() {
 //            database.child("+77025557788").setValue(
 //                Client(
 //                    "Madina",
-//                    "Malikova",
-//                    67,
+//                    "Alieva",
+//                    21,
 //                    Card("1234 5687 7777 8888", 100000)
 //                )
 //            ).addOnSuccessListener {
@@ -115,10 +115,5 @@ class HomeFragment : Fragment() {
             NavHostFragment.findNavController(this@HomeFragment)
                 .navigate(R.id.action_homeFragment_to_QRFragment)
         }
-        imgPayments.setOnClickListener {
-            NavHostFragment.findNavController(this@HomeFragment)
-                .navigate(R.id.action_homeFragment_to_paymentsFragment)
-        }
-
     }
 }

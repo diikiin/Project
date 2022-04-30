@@ -1,5 +1,10 @@
 package com.example.project
 
-enum class DBKeys {
-    Users
+class DBKeys() {
+    //    val USERS = "Users"
+//    val user: String? = null
+    companion object {
+        val USERS: String = "Users"
+        var user: String? = null
+    }
 }

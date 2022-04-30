@@ -19,10 +19,11 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
 
-    private lateinit var firebaseAuth: FirebaseAuth
+    //    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
 
-    private var email = ""
+    //    private var email = ""
+    private var phone = ""
     private var password = ""
     private var password2 = ""
 
@@ -31,20 +32,28 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        firebaseAuth = FirebaseAuth.getInstance()
-        database = Firebase.database.getReference(DBKeys.Users.toString())
+//        firebaseAuth = FirebaseAuth.getInstance()
+        database = Firebase.database.getReference(DBKeys.USERS)
 
         binding.btnRegister.setOnClickListener {
             validateData()
         }
+        binding.btnLogin.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
     }
 
     private fun validateData() {
-        email = binding.phoneNumber.text.toString().trim() + "@gmail.com"
+//        email = binding.phoneNumber.text.toString().trim() + "@gmail.com"
+        phone = binding.phoneNumber.text.toString().trim()
         password = binding.password.text.toString().trim()
         password2 = binding.password2.text.toString().trim()
 
         when {
+            TextUtils.isEmpty(phone) -> {
+                binding.phoneNumber.error = "Please enter a phone number"
+            }
             TextUtils.isEmpty(password) -> {
                 binding.password.error = "Please enter a password"
             }
@@ -64,21 +73,30 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun firebaseRegister() {
-        val text = email.removeSuffix("@gmail.com")
-        database.child(text)
+//        val text = email.removeSuffix("@gmail.com")
+        database.child(phone)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.value != null) {
-                        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                            .addOnSuccessListener {
-                                startActivity(Intent(this@RegisterActivity,
-                                    MainActivity::class.java))
-                                finish()
-                            }
-                            .addOnFailureListener { e ->
-                                Toast.makeText(this@RegisterActivity, "${e.message}",
-                                    Toast.LENGTH_SHORT).show()
-                            }
+                        if (snapshot.child("password").value == null) {
+                            database.child(phone).child("password").setValue(password)
+                            DBKeys.user = phone
+                            startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
+                            finish()
+                        } else{
+                            val error = "Account with this number already created"
+                            Toast.makeText(this@RegisterActivity, error, Toast.LENGTH_SHORT).show()
+                        }
+//                        firebaseAuth.createUserWithEmailAndPassword(email, password)
+//                            .addOnSuccessListener {
+//                                startActivity(Intent(this@RegisterActivity,
+//                                    MainActivity::class.java))
+//                                finish()
+//                            }
+//                            .addOnFailureListener { e ->
+//                                Toast.makeText(this@RegisterActivity, "${e.message}",
+//                                    Toast.LENGTH_SHORT).show()
+//                            }
                     } else {
                         val error = "Client with this phone number does not exist"
                         Toast.makeText(this@RegisterActivity, error, Toast.LENGTH_SHORT).show()

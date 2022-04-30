@@ -11,12 +11,6 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_paymentsFragment"
-            app:destination="@id/paymentsFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_transfersFragment"
-            app:destination="@id/transfersFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_QRFragment"
             app:destination="@id/QRFragment" />
     </fragment>
@@ -42,7 +36,11 @@
         android:id="@+id/menuFragment"
         android:name="com.example.project.fragments.MenuFragment"
         android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" />
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_enterPasswordFragment"
+            app:destination="@id/enterPasswordFragment" />
+    </fragment>
     <fragment
         android:id="@+id/QRFragment"
         android:name="com.example.project.fragments.QRFragment"
@@ -52,7 +50,25 @@
         android:id="@+id/transferToClientFragment"
         android:name="com.example.project.fragments.TransferToClientFragment"
         android:label="fragment_transfer_to_client"
-        tools:layout="@layout/fragment_transfer_to_client" />
+        tools:layout="@layout/fragment_transfer_to_client" >
+        <action
+            android:id="@+id/action_transferToClientFragment_to_transfersFragment"
+            app:destination="@id/transfersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePhoneNumberFragment"
+        android:name="com.example.project.fragments.ChangePhoneNumberFragment"
+        android:label="fragment_change_phone_number"
+        tools:layout="@layout/fragment_change_phone_number" />
+    <fragment
+        android:id="@+id/enterPasswordFragment"
+        android:name="com.example.project.fragments.EnterPasswordFragment"
+        android:label="fragment_enter_password"
+        tools:layout="@layout/fragment_enter_password" >
+        <action
+            android:id="@+id/action_enterPasswordFragment_to_changePhoneNumberFragment"
+            app:destination="@id/changePhoneNumberFragment" />
+    </fragment>
     <!--    <fragment-->
 <!--        android:id="@+id/transfersHistoryFragment"-->
 <!--        android:name="com.example.project.fragments.TransfersHistoryFragment"-->

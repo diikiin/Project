@@ -49,4 +49,11 @@
     <string name="to_dikin_client">To Dikin Client</string>
     <string name="recipient_s_phone_number">Recipient\'s phone number</string>
     <string name="transfer">Transfer</string>
+    <string name="add_to_frequent">Add to frequent</string>
+    <string name="on">on</string>
+    <string name="off">off</string>
+    <string name="change_phone_number">Change phone number</string>
+    <string name="new_phone_number">New phone number</string>
+    <string name="enter_a_password">Enter a password</string>
+    <string name="enter">Enter</string>
 </resources>
