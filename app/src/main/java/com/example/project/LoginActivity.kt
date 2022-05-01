@@ -18,7 +18,6 @@ class LoginActivity : AppCompatActivity() {
 
 //    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
-//    private var email = ""
     private var phone = ""
     private var password = ""
 
@@ -42,14 +41,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun validateData() {
-//        email = binding.phoneNumber.text.toString().trim() + "@gmail.com"
         phone = binding.phoneNumber.text.toString().trim()
         password = binding.password.text.toString().trim()
 
         when {
-//            email == "@gmail.com" -> {
-//                binding.phoneNumber.error = "Please enter a phone number"
-//            }
             TextUtils.isEmpty(phone) -> {
                 binding.phoneNumber.error = "Please enter a phone number"
             }

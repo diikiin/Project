@@ -14,7 +14,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
@@ -22,7 +21,6 @@ class RegisterActivity : AppCompatActivity() {
     //    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
 
-    //    private var email = ""
     private var phone = ""
     private var password = ""
     private var password2 = ""
@@ -45,7 +43,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun validateData() {
-//        email = binding.phoneNumber.text.toString().trim() + "@gmail.com"
         phone = binding.phoneNumber.text.toString().trim()
         password = binding.password.text.toString().trim()
         password2 = binding.password2.text.toString().trim()
@@ -73,7 +70,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun firebaseRegister() {
-//        val text = email.removeSuffix("@gmail.com")
         database.child(phone)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {

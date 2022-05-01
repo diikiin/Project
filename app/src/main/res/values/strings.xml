@@ -58,4 +58,15 @@
     <string name="enter">Enter</string>
     <string name="change_password">Change password</string>
     <string name="new_password">New password</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="user_image">User image</string>
+    <string name="settings_icon">Settings icon</string>
+    <string name="frequent_transfer_icon">Frequent transfer icon</string>
+    <string name="button_icon">Button icon</string>
+    <string name="favourite_payment_icon">Favourite payment icon</string>
+    <string name="payment_name">Payment name</string>
+    <string name="payment_icon">Payment icon</string>
+    <string name="payment">Payment</string>
+    <string name="all_payments">All payments</string>
 </resources>

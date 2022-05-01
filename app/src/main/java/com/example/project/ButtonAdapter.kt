@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.project.databinding.RcButtonItemBinding
 import com.example.project.fragments.TransfersFragment
 
-
 class ButtonAdapter(
     private val listener: Listener,
     private val buttonList: ArrayList<RecyclerButton>
