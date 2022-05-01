@@ -66,10 +66,8 @@ class LoginActivity : AppCompatActivity() {
         database.child(phone).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.value != null) {
-                    println(snapshot.value)
                     if(snapshot.child("password").value.toString() == password){
                         DBKeys.user = phone
-                        println(DBKeys.user)
                         startMainActivity()
                     }
                     else{

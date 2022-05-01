@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_QRFragment"
             app:destination="@id/QRFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_transfersFragment"
+            app:destination="@id/transfersFragment" />
     </fragment>
     <fragment
         android:id="@+id/transfersFragment"
@@ -59,7 +62,11 @@
         android:id="@+id/changePhoneNumberFragment"
         android:name="com.example.project.fragments.ChangePhoneNumberFragment"
         android:label="fragment_change_phone_number"
-        tools:layout="@layout/fragment_change_phone_number" />
+        tools:layout="@layout/fragment_change_phone_number" >
+        <action
+            android:id="@+id/action_changePhoneNumberFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/enterPasswordFragment"
         android:name="com.example.project.fragments.EnterPasswordFragment"
@@ -68,6 +75,18 @@
         <action
             android:id="@+id/action_enterPasswordFragment_to_changePhoneNumberFragment"
             app:destination="@id/changePhoneNumberFragment" />
+        <action
+            android:id="@+id/action_enterPasswordFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.project.fragments.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" >
+        <action
+            android:id="@+id/action_changePasswordFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
     <!--    <fragment-->
 <!--        android:id="@+id/transfersHistoryFragment"-->

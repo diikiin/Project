@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.example.project.*
 import com.example.project.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -47,7 +48,8 @@ class HomeFragment : Fragment() {
 //                    "Nurzhanov",
 //                    45,
 //                    Card("1234 5687 9999 0000", 100000),
-//                    bonus = 100
+//                    bonus = 100,
+//                    password = "admin123"
 //                )
 //            ).addOnSuccessListener {
 //                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
@@ -112,8 +114,10 @@ class HomeFragment : Fragment() {
 
     private fun actions() = with(binding) {
         imgQR.setOnClickListener {
-            NavHostFragment.findNavController(this@HomeFragment)
-                .navigate(R.id.action_homeFragment_to_QRFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_QRFragment)
         }
+//        imgTransfer.setOnClickListener {
+//            findNavController().navigate(R.id.action_homeFragment_to_transfersFragment)
+//        }
     }
 }

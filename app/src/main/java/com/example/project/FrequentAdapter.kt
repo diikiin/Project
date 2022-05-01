@@ -9,7 +9,7 @@ import com.example.project.databinding.FrequentTransfersItemBinding
 
 class FrequentAdapter(
     private val listener: ListenerFrequent,
-    private val frequentList: ArrayList<FrequentTransfer>
+    private val frequentList: MutableList<FrequentTransfer>
 ) : RecyclerView.Adapter<FrequentAdapter.FrequentHolder>() {
     inner class FrequentHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val binding = FrequentTransfersItemBinding.bind(item)

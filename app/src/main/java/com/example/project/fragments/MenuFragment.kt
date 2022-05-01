@@ -19,6 +19,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.project.*
@@ -36,7 +37,6 @@ class MenuFragment : Fragment(), ButtonAdapter.Listener {
     private val buttonList = ArrayList(
         listOf(
             RecyclerButton(R.drawable.ic_notification, "Notifications"),
-            RecyclerButton(R.drawable.ic_phone, "Change phone number"),
             RecyclerButton(R.drawable.ic_lock, "Change password"),
             RecyclerButton(R.drawable.ic_exit, "Sign out")
         )
@@ -47,7 +47,7 @@ class MenuFragment : Fragment(), ButtonAdapter.Listener {
     private val CHANNEL_ID = "channel_id_01"
     private val notificationId = 101
 
-//    private lateinit var firebaseAuth: FirebaseAuth
+    //    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
 
     @SuppressLint("SetTextI18n")
@@ -84,10 +84,7 @@ class MenuFragment : Fragment(), ButtonAdapter.Listener {
     override fun onClick(button: RecyclerButton) {
         when (button.title) {
             "Notifications" -> notificationDialog()
-            "Change phone number" -> NavHostFragment.findNavController(this)
-                .navigate(R.id.action_menuFragment_to_enterPasswordFragment)
-            "Change password" -> Toast.makeText(activity, "Change password", Toast.LENGTH_SHORT)
-                .show()
+            "Change password" -> findNavController().navigate(R.id.action_menuFragment_to_enterPasswordFragment)
             "Sign out" -> signOutDialog()
         }
     }

@@ -8,11 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.example.project.DBKeys
+import com.example.project.FrequentTransfer
 import com.example.project.R
 import com.example.project.databinding.FragmentTransferToClientBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -24,7 +24,6 @@ class TransferToClientFragment : Fragment() {
     private var _binding: FragmentTransferToClientBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
 
     private lateinit var user: String
@@ -37,9 +36,8 @@ class TransferToClientFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentTransferToClientBinding.inflate(inflater, container, false)
-        firebaseAuth = FirebaseAuth.getInstance()
         database = Firebase.database.getReference(DBKeys.USERS)
-        user = firebaseAuth.currentUser?.email.toString().removeSuffix("@gmail.com")
+        user = DBKeys.user!!
 
         database.child(user).get().addOnSuccessListener {
             balance = it.child("card").child("balance").value.toString().toInt()
@@ -52,7 +50,6 @@ class TransferToClientFragment : Fragment() {
 
             validateData()
         }
-
         return binding.root
     }
 
@@ -91,9 +88,9 @@ class TransferToClientFragment : Fragment() {
                         }
 
                         binding.amount.onEditorAction(EditorInfo.IME_ACTION_DONE)
+                        switchCheck()
 
-                        NavHostFragment.findNavController(this@TransferToClientFragment)
-                            .navigate(R.id.action_transferToClientFragment_to_transfersFragment)
+                        findNavController().navigate(R.id.action_transferToClientFragment_to_transfersFragment)
                     } else {
                         val error = "Client with this phone number does not exist"
                         Toast.makeText(activity, error, Toast.LENGTH_SHORT).show()
@@ -104,5 +101,12 @@ class TransferToClientFragment : Fragment() {
                     Toast.makeText(activity, error.message, Toast.LENGTH_SHORT).show()
                 }
             })
+    }
+
+    private fun switchCheck(){
+        if (binding.switchFrequent.isChecked){
+            val frequent = FrequentTransfer(R.drawable.ic_mastercard, client, client)
+            database.child(user).child("frequentTransfer").push().setValue(frequent)
+        }
     }
 }

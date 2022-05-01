@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.project.*
 import com.example.project.databinding.FragmentTransfersBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -24,7 +23,6 @@ class TransfersFragment : Fragment(), ButtonAdapter.Listener, FrequentAdapter.Li
     private var _binding: FragmentTransfersBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var user: String
 
@@ -37,19 +35,16 @@ class TransfersFragment : Fragment(), ButtonAdapter.Listener, FrequentAdapter.Li
     )
     private val adapter = ButtonAdapter(this, buttonList)
 
-    private var frequentList: MutableList<FrequentTransfer> = arrayListOf()
+    private var frequentList: MutableList<FrequentTransfer> = mutableListOf()
     private var frequentAdapter: FrequentAdapter? = null
-    private var stringList: ArrayList<String>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentTransfersBinding.inflate(inflater, container, false)
-        firebaseAuth = FirebaseAuth.getInstance()
         database = Firebase.database.getReference(DBKeys.USERS)
-        user = firebaseAuth.currentUser?.email.toString().removeSuffix("@gmail.com")
-
+        user = DBKeys.user!!
         init1()
         init2()
         return binding.root
@@ -74,32 +69,26 @@ class TransfersFragment : Fragment(), ButtonAdapter.Listener, FrequentAdapter.Li
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.value != null) {
                         binding.txtFrequent.visibility = View.VISIBLE
-                        snapshot.children.forEach {
-                            it.getValue(FrequentTransfer::class.java)
-                                ?.let { it1 -> frequentList.add(it1) }
+                        for (dss in snapshot.children) {
+                            frequentList.add(
+                                FrequentTransfer(
+                                    dss.child("imageId").getValue(Int::class.java)!!,
+                                    dss.child("title").value.toString(),
+                                    dss.child("phoneNumber").value.toString()
+                                )
+                            )
                         }
-//                        for (dss in snapshot.children) {
-//                            frequentList.add(
-//                                FrequentTransfer(
-//                                    dss.child("imageId").getValue(Int::class.java)!!,
-//                                    dss.child("title").toString(),
-//                                    dss.child("phoneNumber").toString()
-//                                )
-//                            )
-//                            stringList?.add(dss.child("title").toString())
-//                        }
-                        Toast.makeText(activity, frequentList.toString(), Toast.LENGTH_SHORT).show()
-//                        frequentAdapter = FrequentAdapter(this@TransfersFragment, frequentList!!)
-//                        binding.apply {
-//                            rcView2.layoutManager = LinearLayoutManager(activity)
-//                            rcView2.adapter = frequentAdapter
-//                            rcView2.addItemDecoration(
-//                                DividerItemDecoration(
-//                                    rcView2.context,
-//                                    DividerItemDecoration.VERTICAL
-//                                )
-//                            )
-//                        }
+                        frequentAdapter = FrequentAdapter(this@TransfersFragment, frequentList)
+                        binding.apply {
+                            rcView2.layoutManager = LinearLayoutManager(activity)
+                            rcView2.adapter = frequentAdapter
+                            rcView2.addItemDecoration(
+                                DividerItemDecoration(
+                                    rcView2.context,
+                                    DividerItemDecoration.VERTICAL
+                                )
+                            )
+                        }
 
                     }
                 }
@@ -113,19 +102,11 @@ class TransfersFragment : Fragment(), ButtonAdapter.Listener, FrequentAdapter.Li
     override fun onClick(button: RecyclerButton) {
         when (button.title) {
             "Between my accounts" -> Toast.makeText(
-                activity,
-                "Between my accounts",
-                Toast.LENGTH_SHORT
-            ).show()
-
-            "To Dikin Client" -> NavHostFragment.findNavController(this)
+                activity, "Between my accounts", Toast.LENGTH_SHORT).show()
+            "To Dikin Client" -> findNavController()
                 .navigate(R.id.action_transfersFragment_to_transferToClientFragment)
-
             "To another bank card" -> Toast.makeText(
-                activity,
-                "To another bank card",
-                Toast.LENGTH_SHORT
-            ).show()
+                activity, "To another bank card", Toast.LENGTH_SHORT).show()
         }
     }
 
