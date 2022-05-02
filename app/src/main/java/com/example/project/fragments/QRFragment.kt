@@ -11,24 +11,16 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.budiyev.android.codescanner.*
 import com.example.project.R
-import com.example.project.databinding.FragmentQrBinding
 
 private const val CAMERA_REQUEST_CODE = 101
 
 class QRFragment : Fragment() {
-//    private var _binding: FragmentQrBinding? = null
-//    private val binding get() = _binding!!
-
     private lateinit var codeScanner: CodeScanner
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        _binding = FragmentQrBinding.inflate(inflater, container, false)
-//        codeScanner()
-//        return binding.root
-
         return inflater.inflate(R.layout.fragment_qr, container, false)
     }
 
@@ -76,6 +68,7 @@ class QRFragment : Fragment() {
         )
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,

@@ -64,7 +64,7 @@ class TransfersFragment : Fragment(), ButtonAdapter.Listener, FrequentAdapter.Li
 
     private fun init2() {
         database.child(user).child("frequentTransfer")
-            .addListenerForSingleValueEvent(object : ValueEventListener{
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.value != null) {
                         binding.txtFrequent.visibility = View.VISIBLE
@@ -90,7 +90,6 @@ class TransfersFragment : Fragment(), ButtonAdapter.Listener, FrequentAdapter.Li
                                 )
                             )
                         }
-
                     }
                 }
 
@@ -103,17 +102,21 @@ class TransfersFragment : Fragment(), ButtonAdapter.Listener, FrequentAdapter.Li
     override fun onClick(button: RecyclerButton) {
         when (button.title) {
             "Between my accounts" -> Toast.makeText(
-                activity, "Between my accounts", Toast.LENGTH_SHORT).show()
+                activity, "Between my accounts", Toast.LENGTH_SHORT
+            ).show()
             "To Dikin Client" -> findNavController()
                 .navigate(R.id.action_transfersFragment_to_transferToClientFragment)
             "To another bank card" -> Toast.makeText(
-                activity, "To another bank card", Toast.LENGTH_SHORT).show()
+                activity, "To another bank card", Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
     override fun onClick(button: FrequentTransfer) {
         val bundle = bundleOf("clientName" to button.name, "cardImg" to button.imageId)
-        findNavController()
-            .navigate(R.id.action_transfersFragment_to_transferToFrequentFragment, bundle)
+        findNavController().navigate(
+            R.id.action_transfersFragment_to_transferToFrequentFragment,
+            bundle
+        )
     }
 }

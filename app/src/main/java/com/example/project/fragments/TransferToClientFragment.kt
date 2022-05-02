@@ -61,8 +61,11 @@ class TransferToClientFragment : Fragment() {
             amount!! == 0 || TextUtils.isEmpty(amount.toString()) -> {
                 binding.amount.error = "Please enter an amount of transfer"
             }
-            balance!! <= amount!! -> Toast.makeText(activity, "You do not have so much money", Toast.LENGTH_SHORT)
-                .show()
+            balance!! <= amount!! -> Toast.makeText(
+                activity,
+                "You do not have so much money",
+                Toast.LENGTH_SHORT
+            ).show()
             else -> {
                 setBalance()
             }
@@ -76,17 +79,13 @@ class TransferToClientFragment : Fragment() {
                     if (snapshot.value != null) {
                         database.child(user).child("card").child("balance")
                             .setValue(balance!! - amount!!).addOnSuccessListener {
-                                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT)
-                                    .show()
+                                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
                             }.addOnFailureListener {
-                                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT)
-                                    .show()
+                                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
                             }
-                        database.child(user).get().addOnSuccessListener {
-                            balance = it.child("card").child("balance").value.toString().toInt()
-                            binding.txtCardValue.text = balance.toString()
-                        }
 
+                        binding.phoneNumber.onEditorAction(EditorInfo.IME_ACTION_DONE)
+                        binding.amount.onEditorAction(EditorInfo.IME_ACTION_DONE)
                         binding.btnTransfer.onEditorAction(EditorInfo.IME_ACTION_DONE)
                         switchCheck()
 
@@ -103,14 +102,22 @@ class TransferToClientFragment : Fragment() {
             })
     }
 
-    private fun switchCheck(){
-        if (binding.switchFrequent.isChecked){
-            var name:String = client
+    private fun switchCheck() {
+        if (binding.switchFrequent.isChecked) {
+            var name = "Client"
+            var frequent: FrequentTransfer?
             database.child(client).get().addOnSuccessListener {
-                name = it.child("firstName").value.toString() + " " + it.child("lastName").value.toString()
+                name =
+                    it.child("firstName").value.toString() + " " + it.child("lastName").value.toString()
+                frequent = FrequentTransfer(R.drawable.ic_mastercard, name, name, client)
+                database.child(user).child("frequentTransfer").push().setValue(frequent)
+                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
             }
-            val frequent = FrequentTransfer(R.drawable.ic_mastercard, name, name, client)
-            database.child(user).child("frequentTransfer").push().setValue(frequent)
+                .addOnFailureListener {
+                    frequent = FrequentTransfer(R.drawable.ic_mastercard, name, name, client)
+                    database.child(user).child("frequentTransfer").push().setValue(frequent)
+                    Toast.makeText(activity, "Failure", Toast.LENGTH_SHORT).show()
+                }
         }
     }
 }

@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.TransferToFrequentFragment">
+    tools:context=".fragments.PaymentToFavouriteFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/transfersLabel"
+        android:id="@+id/paymentLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -16,19 +16,42 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/transfersPage"
+            android:id="@+id/txtPayment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/to_dikin_client"
+            android:text="@string/payment_name"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/transfersLabel" />
-
+            app:layout_constraintTop_toTopOf="@id/paymentLabel" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/amountInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@color/white"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paymentLabel">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/amount"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:layout_marginHorizontal="25dp"
+            android:background="@color/white"
+            android:inputType="number"
+            android:text="@string/_0"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/myCardLayout"
@@ -38,7 +61,7 @@
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/transfersLabel">
+        app:layout_constraintTop_toBottomOf="@+id/amountInputLayout">
 
         <ImageView
             android:id="@+id/imgMyCard"
@@ -57,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:text="@string/my_dikin_gold"
+            android:text="@string/dikin_gold"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgMyCard"
@@ -86,76 +109,17 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clientCardLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myCardLayout">
-
-        <ImageView
-            android:id="@+id/imgClientCard"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginVertical="5dp"
-            android:layout_marginStart="25dp"
-            android:contentDescription="@string/card_image"
-            android:src="@drawable/ic_mastercard"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtClientCardName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:text="@string/client_dikin_gold"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imgClientCard"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/amountInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:background="@color/white"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clientCardLayout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/amount"
-            android:layout_width="match_parent"
-            android:layout_height="66dp"
-            android:layout_marginHorizontal="25dp"
-            android:background="@color/white"
-            android:inputType="number"
-            android:text="@string/_0"
-            android:textAlignment="center"
-            android:textSize="24sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
     <Button
-        android:id="@+id/btnTransfer"
+        android:id="@+id/btnPay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="25dp"
         android:backgroundTint="@color/green"
-        android:text="@string/transfer"
+        android:text="@string/pay"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/amountInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/myCardLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

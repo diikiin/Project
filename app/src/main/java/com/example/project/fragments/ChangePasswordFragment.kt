@@ -61,6 +61,8 @@ class ChangePasswordFragment : Fragment() {
     private fun confirmNewPassword(){
         database.child(DBKeys.user!!).child("password").setValue(password)
         binding.btnChangePassword.onEditorAction(EditorInfo.IME_ACTION_DONE)
+        binding.password.onEditorAction(EditorInfo.IME_ACTION_DONE)
+        binding.password2.onEditorAction(EditorInfo.IME_ACTION_DONE)
         findNavController().navigate(R.id.action_changePasswordFragment_to_menuFragment)
     }
 }

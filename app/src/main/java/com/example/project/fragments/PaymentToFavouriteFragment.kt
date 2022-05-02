@@ -11,13 +11,13 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.project.DBKeys
 import com.example.project.R
-import com.example.project.databinding.FragmentTransferToFrequentBinding
+import com.example.project.databinding.FragmentPaymentToFavouriteBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-class TransferToFrequentFragment : Fragment() {
-    private var _binding: FragmentTransferToFrequentBinding? = null
+class PaymentToFavouriteFragment : Fragment() {
+    private var _binding: FragmentPaymentToFavouriteBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var database: DatabaseReference
@@ -29,7 +29,7 @@ class TransferToFrequentFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentTransferToFrequentBinding.inflate(inflater, container, false)
+        _binding = FragmentPaymentToFavouriteBinding.inflate(inflater, container, false)
         database = Firebase.database.getReference(DBKeys.USERS)
 
         database.child(user).get().addOnSuccessListener {
@@ -37,22 +37,25 @@ class TransferToFrequentFragment : Fragment() {
             binding.txtCardValue.text = balance.toString()
         }
 
-        binding.imgClientCard.setImageResource(arguments?.getInt("cardImg")!!)
-        binding.txtClientCardName.text = arguments?.getString("clientName")
+        binding.txtPayment.text = arguments?.getString("name")
 
-        binding.btnTransfer.setOnClickListener {
+        binding.btnPay.setOnClickListener {
             amount = binding.amount.text.toString().toInt()
             validateData()
         }
         return binding.root
     }
 
-    private fun validateData(){
+    private fun validateData() {
         when {
             amount!! == 0 || TextUtils.isEmpty(amount.toString()) -> {
                 binding.amount.error = "Please enter an amount of transfer"
             }
-            balance!! <= amount!! -> Toast.makeText(activity, "You do not have so much money", Toast.LENGTH_SHORT)
+            balance!! <= amount!! -> Toast.makeText(
+                activity,
+                "You do not have so much money",
+                Toast.LENGTH_SHORT
+            )
                 .show()
             else -> {
                 setBalance()
@@ -60,7 +63,7 @@ class TransferToFrequentFragment : Fragment() {
         }
     }
 
-    private fun setBalance(){
+    private fun setBalance() {
         database.child(user).child("card").child("balance")
             .setValue(balance!! - amount!!).addOnSuccessListener {
                 Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
@@ -69,7 +72,7 @@ class TransferToFrequentFragment : Fragment() {
             }
 
         binding.amount.onEditorAction(EditorInfo.IME_ACTION_DONE)
-        binding.btnTransfer.onEditorAction(EditorInfo.IME_ACTION_DONE)
-        findNavController().navigate(R.id.action_transferToFrequentFragment_to_transfersFragment)
+        binding.btnPay.onEditorAction(EditorInfo.IME_ACTION_DONE)
+        findNavController().navigate(R.id.action_paymentToFavouriteFragment_to_paymentsFragment)
     }
 }

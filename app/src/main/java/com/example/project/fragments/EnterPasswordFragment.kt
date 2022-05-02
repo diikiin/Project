@@ -32,6 +32,7 @@ class EnterPasswordFragment : Fragment() {
             val password = binding.txtPassword.text.toString()
             database.child(DBKeys.user!!).get().addOnSuccessListener {
                 if (it.child("password").value.toString() == password) {
+                    binding.txtPassword.onEditorAction(EditorInfo.IME_ACTION_DONE)
                     binding.btnPassword.onEditorAction(EditorInfo.IME_ACTION_DONE)
                     findNavController().navigate(R.id.action_enterPasswordFragment_to_changePasswordFragment)
                 }

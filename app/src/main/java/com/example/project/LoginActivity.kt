@@ -4,19 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Patterns
 import android.widget.Toast
 import com.example.project.databinding.ActivityLoginBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityLoginBinding
 
-//    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private var phone = ""
     private var password = ""
@@ -26,7 +22,6 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        firebaseAuth = FirebaseAuth.getInstance()
         database = Firebase.database.getReference(DBKeys.USERS)
         checkUser()
 
@@ -61,11 +56,10 @@ class LoginActivity : AppCompatActivity() {
         database.child(phone).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.value != null) {
-                    if(snapshot.child("password").value.toString() == password){
+                    if (snapshot.child("password").value.toString() == password) {
                         DBKeys.user = phone
                         startMainActivity()
-                    }
-                    else{
+                    } else {
                         val error = "Incorrect password"
                         Toast.makeText(this@LoginActivity, error, Toast.LENGTH_SHORT).show()
                     }
@@ -79,18 +73,9 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this@LoginActivity, error.message, Toast.LENGTH_SHORT).show()
             }
         })
-
-//        firebaseAuth.signInWithEmailAndPassword(email, password)
-//            .addOnSuccessListener {
-//                startMainActivity()
-//            }
-//            .addOnFailureListener { e ->
-//                Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
-//            }
     }
 
     private fun checkUser() {
-//        val firebaseUser = firebaseAuth.currentUser
         val user = DBKeys.user
         if (user != null) {
             startMainActivity()

@@ -6,7 +6,6 @@ import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.project.databinding.ActivityRegisterBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -15,10 +14,8 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 class RegisterActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityRegisterBinding
 
-    //    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
 
     private var phone = ""
@@ -30,7 +27,6 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        firebaseAuth = FirebaseAuth.getInstance()
         database = Firebase.database.getReference(DBKeys.USERS)
 
         binding.btnRegister.setOnClickListener {
@@ -79,20 +75,10 @@ class RegisterActivity : AppCompatActivity() {
                             DBKeys.user = phone
                             startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
                             finish()
-                        } else{
+                        } else {
                             val error = "Account with this number already created"
                             Toast.makeText(this@RegisterActivity, error, Toast.LENGTH_SHORT).show()
                         }
-//                        firebaseAuth.createUserWithEmailAndPassword(email, password)
-//                            .addOnSuccessListener {
-//                                startActivity(Intent(this@RegisterActivity,
-//                                    MainActivity::class.java))
-//                                finish()
-//                            }
-//                            .addOnFailureListener { e ->
-//                                Toast.makeText(this@RegisterActivity, "${e.message}",
-//                                    Toast.LENGTH_SHORT).show()
-//                            }
                     } else {
                         val error = "Client with this phone number does not exist"
                         Toast.makeText(this@RegisterActivity, error, Toast.LENGTH_SHORT).show()

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.TransferToClientFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,13 +44,13 @@
             android:id="@+id/imgMyCard"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="25dp"
             android:layout_marginVertical="5dp"
+            android:layout_marginStart="25dp"
+            android:contentDescription="@string/card_image"
             android:src="@drawable/ic_mastercard"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/card_image" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txtCardName"
@@ -68,19 +68,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
+            android:contentDescription="@string/tenge_sign"
             android:src="@drawable/ic_tenge"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/tenge_sign" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txtCardValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="3dp"
-            android:textSize="22sp"
             android:text="@string/_0"
+            android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imgTenge"
             app:layout_constraintTop_toTopOf="parent" />
@@ -128,9 +128,9 @@
             android:layout_height="66dp"
             android:layout_marginHorizontal="25dp"
             android:background="@color/white"
+            android:inputType="number"
             android:text="@string/_0"
             android:textAlignment="center"
-            android:inputType="number"
             android:textSize="24sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -139,8 +139,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:paddingVertical="10dp"
         android:background="@color/white"
+        android:paddingVertical="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/amountInputLayout">
@@ -175,9 +175,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="25dp"
+        android:backgroundTint="@color/green"
         android:text="@string/transfer"
         android:textSize="24sp"
-        android:backgroundTint="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addToFrequentLayout" />

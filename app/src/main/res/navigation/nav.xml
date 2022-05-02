@@ -9,7 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="com.example.project.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_QRFragment"
             app:destination="@id/QRFragment" />
@@ -18,7 +18,7 @@
         android:id="@+id/transfersFragment"
         android:name="com.example.project.fragments.TransfersFragment"
         android:label="fragment_transfers"
-        tools:layout="@layout/fragment_transfers" >
+        tools:layout="@layout/fragment_transfers">
         <action
             android:id="@+id/action_transfersFragment_to_transferToClientFragment"
             app:destination="@id/transferToClientFragment" />
@@ -30,16 +30,19 @@
         android:id="@+id/paymentsFragment"
         android:name="com.example.project.fragments.PaymentsFragment"
         android:label="fragment_payments"
-        tools:layout="@layout/fragment_payments" >
+        tools:layout="@layout/fragment_payments">
         <action
             android:id="@+id/action_paymentsFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_paymentsFragment_to_paymentToFavouriteFragment"
+            app:destination="@id/paymentToFavouriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
         android:name="com.example.project.fragments.MenuFragment"
         android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" >
+        tools:layout="@layout/fragment_menu">
         <action
             android:id="@+id/action_menuFragment_to_enterPasswordFragment"
             app:destination="@id/enterPasswordFragment" />
@@ -53,7 +56,7 @@
         android:id="@+id/transferToClientFragment"
         android:name="com.example.project.fragments.TransferToClientFragment"
         android:label="fragment_transfer_to_client"
-        tools:layout="@layout/fragment_transfer_to_client" >
+        tools:layout="@layout/fragment_transfer_to_client">
         <action
             android:id="@+id/action_transferToClientFragment_to_transfersFragment"
             app:destination="@id/transfersFragment" />
@@ -62,7 +65,7 @@
         android:id="@+id/enterPasswordFragment"
         android:name="com.example.project.fragments.EnterPasswordFragment"
         android:label="fragment_enter_password"
-        tools:layout="@layout/fragment_enter_password" >
+        tools:layout="@layout/fragment_enter_password">
         <action
             android:id="@+id/action_enterPasswordFragment_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment" />
@@ -71,7 +74,7 @@
         android:id="@+id/changePasswordFragment"
         android:name="com.example.project.fragments.ChangePasswordFragment"
         android:label="fragment_change_password"
-        tools:layout="@layout/fragment_change_password" >
+        tools:layout="@layout/fragment_change_password">
         <action
             android:id="@+id/action_changePasswordFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
@@ -80,7 +83,7 @@
         android:id="@+id/paymentFragment"
         android:name="com.example.project.fragments.PaymentFragment"
         android:label="fragment_payment"
-        tools:layout="@layout/fragment_payment" >
+        tools:layout="@layout/fragment_payment">
         <action
             android:id="@+id/action_paymentFragment_to_paymentsFragment"
             app:destination="@id/paymentsFragment" />
@@ -89,7 +92,7 @@
         android:id="@+id/transferToFrequentFragment"
         android:name="com.example.project.fragments.TransferToFrequentFragment"
         android:label="fragment_transfer_to_frequent"
-        tools:layout="@layout/fragment_transfer_to_frequent" >
+        tools:layout="@layout/fragment_transfer_to_frequent">
         <action
             android:id="@+id/action_transferToFrequentFragment_to_transfersFragment"
             app:destination="@id/transfersFragment" />
@@ -99,5 +102,17 @@
         <argument
             android:name="cardImg"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentToFavouriteFragment"
+        android:name="com.example.project.fragments.PaymentToFavouriteFragment"
+        android:label="fragment_payment_to_favourite"
+        tools:layout="@layout/fragment_payment_to_favourite">
+        <action
+            android:id="@+id/action_paymentToFavouriteFragment_to_paymentsFragment"
+            app:destination="@id/paymentsFragment" />
+        <argument
+            android:name="name"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -25,10 +25,10 @@
             android:layout_height="55dp"
             android:layout_margin="10dp"
             android:background="@color/white"
+            android:contentDescription="@string/user_image"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_user"
-            tools:ignore="TouchTargetSizeCheck"
-            android:contentDescription="@string/user_image" />
+            tools:ignore="TouchTargetSizeCheck" />
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
@@ -61,6 +61,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtPhoneNumber"
-        tools:listitem="@layout/rc_button_item"/>
+        tools:listitem="@layout/rc_button_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

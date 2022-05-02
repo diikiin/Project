@@ -11,13 +11,9 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.project.DBKeys
 import com.example.project.FavouritePayment
-import com.example.project.FrequentTransfer
 import com.example.project.R
 import com.example.project.databinding.FragmentPaymentBinding
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
@@ -50,12 +46,16 @@ class PaymentFragment : Fragment() {
         return binding.root
     }
 
-    private fun validateData(){
+    private fun validateData() {
         when {
             amount!! == 0 || TextUtils.isEmpty(amount.toString()) -> {
                 binding.amount.error = "Please enter an amount of transfer"
             }
-            balance!! <= amount!! -> Toast.makeText(activity, "You do not have so much money", Toast.LENGTH_SHORT)
+            balance!! <= amount!! -> Toast.makeText(
+                activity,
+                "You do not have so much money",
+                Toast.LENGTH_SHORT
+            )
                 .show()
             else -> {
                 setBalance()
@@ -63,27 +63,24 @@ class PaymentFragment : Fragment() {
         }
     }
 
-    private fun setBalance(){
+    private fun setBalance() {
         database.child(user).child("card").child("balance")
             .setValue(balance!! - amount!!).addOnSuccessListener {
                 Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {
                 Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
             }
-        database.child(user).get().addOnSuccessListener {
-            balance = it.child("card").child("balance").value.toString().toInt()
-            binding.txtCardValue.text = balance.toString()
-        }
 
+        binding.amount.onEditorAction(EditorInfo.IME_ACTION_DONE)
         binding.btnPay.onEditorAction(EditorInfo.IME_ACTION_DONE)
         switchCheck()
 
         findNavController().navigate(R.id.action_paymentFragment_to_paymentsFragment)
     }
 
-    private fun switchCheck(){
-        if (binding.switchFavourite.isChecked){
-            val favourite = FavouritePayment(R.drawable.ic_payment, "Payment")
+    private fun switchCheck() {
+        if (binding.switchFavourite.isChecked) {
+            val favourite = FavouritePayment(R.drawable.ic_payment, "Payment", "Payment")
             database.child(user).child("favouritePayment").push().setValue(favourite)
         }
     }
