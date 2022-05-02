@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.TransferToClientFragment">
+    tools:context=".fragments.TransferToFrequentFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/transfersLabel"
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:text="@string/dikin_gold"
+            android:text="@string/my_dikin_gold"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgMyCard"
@@ -86,29 +86,40 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/phoneInputLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clientCardLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:background="@color/white"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myCardLayout">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/phoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="66dp"
-            android:layout_marginHorizontal="25dp"
-            android:background="@color/white"
-            android:ems="10"
-            android:hint="@string/recipient_s_phone_number"
-            android:inputType="phone"
-            android:textSize="24sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+        <ImageView
+            android:id="@+id/imgClientCard"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginVertical="5dp"
+            android:src="@drawable/ic_mastercard"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/card_image" />
+
+        <TextView
+            android:id="@+id/txtClientCardName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/client_dikin_gold"
+            android:layout_marginStart="15dp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgClientCard"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/amountInputLayout"
@@ -120,7 +131,7 @@
         app:boxStrokeWidthFocused="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/clientCardLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/amount"
@@ -134,41 +145,6 @@
             android:textSize="24sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/addToFrequentLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:paddingVertical="10dp"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/amountInputLayout">
-
-        <TextView
-            android:id="@+id/addToFrequent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:text="@string/add_to_frequent"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switchFrequent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="25dp"
-            android:thumb="@drawable/thumb"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:track="@drawable/track" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <Button
         android:id="@+id/btnTransfer"
         android:layout_width="match_parent"
@@ -180,6 +156,6 @@
         android:backgroundTint="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addToFrequentLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/amountInputLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

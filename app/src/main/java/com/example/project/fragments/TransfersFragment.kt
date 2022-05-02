@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +24,7 @@ class TransfersFragment : Fragment(), ButtonAdapter.Listener, FrequentAdapter.Li
     private val binding get() = _binding!!
 
     private lateinit var database: DatabaseReference
-    private lateinit var user: String
+    private val user = DBKeys.user!!
 
     private val buttonList = ArrayList(
         listOf(
@@ -43,7 +44,6 @@ class TransfersFragment : Fragment(), ButtonAdapter.Listener, FrequentAdapter.Li
     ): View {
         _binding = FragmentTransfersBinding.inflate(inflater, container, false)
         database = Firebase.database.getReference(DBKeys.USERS)
-        user = DBKeys.user!!
         init1()
         init2()
         return binding.root
@@ -68,11 +68,13 @@ class TransfersFragment : Fragment(), ButtonAdapter.Listener, FrequentAdapter.Li
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.value != null) {
                         binding.txtFrequent.visibility = View.VISIBLE
+                        frequentList.clear()
                         for (dss in snapshot.children) {
                             frequentList.add(
                                 FrequentTransfer(
                                     dss.child("imageId").getValue(Int::class.java)!!,
                                     dss.child("title").value.toString(),
+                                    dss.child("name").value.toString(),
                                     dss.child("phoneNumber").value.toString()
                                 )
                             )
@@ -110,6 +112,8 @@ class TransfersFragment : Fragment(), ButtonAdapter.Listener, FrequentAdapter.Li
     }
 
     override fun onClick(button: FrequentTransfer) {
-        TODO("Not yet implemented")
+        val bundle = bundleOf("clientName" to button.name, "cardImg" to button.imageId)
+        findNavController()
+            .navigate(R.id.action_transfersFragment_to_transferToFrequentFragment, bundle)
     }
 }

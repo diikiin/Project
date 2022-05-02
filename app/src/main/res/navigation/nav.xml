@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_transfersFragment_to_transferToClientFragment"
             app:destination="@id/transferToClientFragment" />
+        <action
+            android:id="@+id/action_transfersFragment_to_transferToFrequentFragment"
+            app:destination="@id/transferToFrequentFragment" />
     </fragment>
     <fragment
         android:id="@+id/paymentsFragment"
@@ -81,5 +84,20 @@
         <action
             android:id="@+id/action_paymentFragment_to_paymentsFragment"
             app:destination="@id/paymentsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transferToFrequentFragment"
+        android:name="com.example.project.fragments.TransferToFrequentFragment"
+        android:label="fragment_transfer_to_frequent"
+        tools:layout="@layout/fragment_transfer_to_frequent" >
+        <action
+            android:id="@+id/action_transferToFrequentFragment_to_transfersFragment"
+            app:destination="@id/transfersFragment" />
+        <argument
+            android:name="clientName"
+            app:argType="string" />
+        <argument
+            android:name="cardImg"
+            app:argType="integer" />
     </fragment>
 </navigation>

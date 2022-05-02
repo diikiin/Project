@@ -87,7 +87,7 @@ class TransferToClientFragment : Fragment() {
                             binding.txtCardValue.text = balance.toString()
                         }
 
-                        binding.amount.onEditorAction(EditorInfo.IME_ACTION_DONE)
+                        binding.btnTransfer.onEditorAction(EditorInfo.IME_ACTION_DONE)
                         switchCheck()
 
                         findNavController().navigate(R.id.action_transferToClientFragment_to_transfersFragment)
@@ -105,7 +105,11 @@ class TransferToClientFragment : Fragment() {
 
     private fun switchCheck(){
         if (binding.switchFrequent.isChecked){
-            val frequent = FrequentTransfer(R.drawable.ic_mastercard, client, client)
+            var name:String = client
+            database.child(client).get().addOnSuccessListener {
+                name = it.child("firstName").value.toString() + " " + it.child("lastName").value.toString()
+            }
+            val frequent = FrequentTransfer(R.drawable.ic_mastercard, name, name, client)
             database.child(user).child("frequentTransfer").push().setValue(frequent)
         }
     }
