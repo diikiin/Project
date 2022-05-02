@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_homeFragment_to_QRFragment"
             app:destination="@id/QRFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_transfersFragment"
-            app:destination="@id/transfersFragment" />
     </fragment>
     <fragment
         android:id="@+id/transfersFragment"
@@ -31,9 +28,9 @@
         android:name="com.example.project.fragments.PaymentsFragment"
         android:label="fragment_payments"
         tools:layout="@layout/fragment_payments" >
-<!--        <action-->
-<!--            android:id="@+id/action_paymentsFragment_to_homeFragment"-->
-<!--            app:destination="@id/homeFragment" />-->
+        <action
+            android:id="@+id/action_paymentsFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
@@ -59,22 +56,10 @@
             app:destination="@id/transfersFragment" />
     </fragment>
     <fragment
-        android:id="@+id/changePhoneNumberFragment"
-        android:name="com.example.project.fragments.ChangePhoneNumberFragment"
-        android:label="fragment_change_phone_number"
-        tools:layout="@layout/fragment_change_phone_number" >
-        <action
-            android:id="@+id/action_changePhoneNumberFragment_to_menuFragment"
-            app:destination="@id/menuFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/enterPasswordFragment"
         android:name="com.example.project.fragments.EnterPasswordFragment"
         android:label="fragment_enter_password"
         tools:layout="@layout/fragment_enter_password" >
-        <action
-            android:id="@+id/action_enterPasswordFragment_to_changePhoneNumberFragment"
-            app:destination="@id/changePhoneNumberFragment" />
         <action
             android:id="@+id/action_enterPasswordFragment_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment" />
@@ -88,9 +73,13 @@
             android:id="@+id/action_changePasswordFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
     </fragment>
-    <!--    <fragment-->
-<!--        android:id="@+id/transfersHistoryFragment"-->
-<!--        android:name="com.example.project.fragments.TransfersHistoryFragment"-->
-<!--        android:label="fragment_transfers_history"-->
-<!--        tools:layout="@layout/fragment_transfers_history" />-->
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.example.project.fragments.PaymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment" >
+        <action
+            android:id="@+id/action_paymentFragment_to_paymentsFragment"
+            app:destination="@id/paymentsFragment" />
+    </fragment>
 </navigation>
