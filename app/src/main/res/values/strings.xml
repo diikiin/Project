@@ -52,7 +52,7 @@
     <string name="off">off</string>
     <string name="change_phone_number">Change phone number</string>
     <string name="new_phone_number">New phone number</string>
-    <string name="enter_a_password">Enter a password</string>
+    <string name="enter_an_old_password">Enter an old password</string>
     <string name="enter">Enter</string>
     <string name="change_password">Change password</string>
     <string name="new_password">New password</string>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.project.DBKeys
 import com.example.project.R
@@ -63,6 +64,7 @@ class ChangePasswordFragment : Fragment() {
         binding.btnChangePassword.onEditorAction(EditorInfo.IME_ACTION_DONE)
         binding.password.onEditorAction(EditorInfo.IME_ACTION_DONE)
         binding.password2.onEditorAction(EditorInfo.IME_ACTION_DONE)
+        Toast.makeText(activity, "Password changed", Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.action_changePasswordFragment_to_menuFragment)
     }
 }
