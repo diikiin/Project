@@ -71,4 +71,6 @@
     <string name="pay">Pay</string>
     <string name="client_dikin_gold">Client Dikin Gold</string>
     <string name="my_dikin_gold">My Dikin Gold</string>
+    <string name="spend_bonuses">Spend bonuses</string>
+    <string name="will_be_spent">Will be spent</string>
 </resources>
