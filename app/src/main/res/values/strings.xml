@@ -73,4 +73,8 @@
     <string name="my_dikin_gold">My Dikin Gold</string>
     <string name="spend_bonuses">Spend bonuses</string>
     <string name="will_be_spent">Will be spent</string>
+    <string name="history_item">History item</string>
+    <string name="history_amount">History amount</string>
+    <string name="rename">Rename</string>
+    <string name="delete">Delete</string>
 </resources>

@@ -43,6 +43,7 @@
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_change_password.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_change_phone_number.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_enter_password.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_history.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_login.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_menu.xml" value="0.264" />
@@ -56,11 +57,13 @@
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_transfers.xml" value="0.264" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_transfers_history.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/frequent_transfers_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/history_item.xml" value="0.2076923076923077" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/main_screen.xml" value="0.2" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/rc_button_item.xml" value="0.264" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/search.xml" value="0.1" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/serach.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/thumb.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/menu/context_menu.xml" value="0.253125" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/menu/navigation.xml" value="0.264" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/xml/searchable.xml" value="0.25416666666666665" />
       </map>

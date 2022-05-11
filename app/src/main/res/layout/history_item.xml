@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/frequentTransfers"
+        android:id="@+id/historyItemCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="0dp"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imgFrequent"
+            android:id="@+id/imgHistoryItem"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="left"
@@ -26,23 +26,22 @@
             tools:ignore="RtlHardcoded" />
 
         <TextView
-            android:id="@+id/txtFrequent"
+            android:id="@+id/txtHistoryItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="95dp"
-            android:text="@string/transfer_name"
+            android:text="@string/history_item"
             android:textSize="18sp" />
 
-        <ImageButton
-            android:id="@+id/imgSettings"
-            android:background="@color/white"
+        <TextView
+            android:id="@+id/txtHistoryAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|center_vertical"
-            android:layout_marginEnd="20dp"
-            android:contentDescription="@string/settings_icon"
-            android:src="@drawable/ic_settings"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginEnd="25dp"
+            android:text="@string/history_amount"
+            android:textSize="18sp"
             tools:ignore="RtlHardcoded" />
 
     </com.google.android.material.card.MaterialCardView>

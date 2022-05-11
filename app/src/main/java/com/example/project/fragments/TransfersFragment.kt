@@ -1,10 +1,11 @@
 package com.example.project.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.*
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
@@ -44,6 +45,11 @@ class TransfersFragment : Fragment(), ButtonAdapter.Listener, FrequentAdapter.Li
     ): View {
         _binding = FragmentTransfersBinding.inflate(inflater, container, false)
         database = Firebase.database.getReference(DBKeys.USERS)
+
+        binding.txtHistory.setOnClickListener {
+            findNavController().navigate(R.id.action_transfersFragment_to_historyFragment)
+        }
+
         init1()
         init2()
         return binding.root
@@ -79,7 +85,7 @@ class TransfersFragment : Fragment(), ButtonAdapter.Listener, FrequentAdapter.Li
                                 )
                             )
                         }
-                        frequentAdapter = FrequentAdapter(this@TransfersFragment, frequentList)
+                        frequentAdapter = FrequentAdapter(this@TransfersFragment, frequentList, context!!, database)
                         binding.apply {
                             rcView2.layoutManager = LinearLayoutManager(activity)
                             rcView2.adapter = frequentAdapter
