@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.project.*
 import com.example.project.databinding.FragmentHomeBinding
@@ -32,76 +33,6 @@ class HomeFragment : Fragment() {
             binding.txtCardCode.text = textCard.replaceRange(0, 14, "*")
             binding.txtCardValue.text = it.child("card").child("balance").value.toString()
         }
-
-//        binding.addToDB.setOnClickListener {
-//            database.child("+77025559900").setValue(
-//                Client(
-//                    "Daniyar",
-//                    "Nurzhanov",
-//                    45,
-//                    Card("1234 5687 9999 0000", 100000),
-//                    bonus = 100,
-//                    password = "admin123"
-//                )
-//            ).addOnSuccessListener {
-//                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
-//            }.addOnFailureListener {
-//                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
-//            }
-//            database.child("+7777").setValue(
-//                Client(
-//                    "Dauren",
-//                    "Kabyl",
-//                    20,
-//                    Card("1234 5687 1111 2222", 100000),
-//                    bonus = 100,
-//                    frequentTransfer = ArrayList(listOf(FrequentTransfer(R.drawable.ic_mastercard, "Wife", "+77025557788"))),
-//                    favouritePayment = ArrayList(listOf(FavouritePayment(R.drawable.ic_payment, "Public utilities", "Public utilities"))),
-//                    password = "admin123"
-//                )
-//            ).addOnSuccessListener {
-//                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
-//            }.addOnFailureListener {
-//                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
-//            }
-//            database.child("+77025557788").setValue(
-//                Client(
-//                    "Madina",
-//                    "Alieva",
-//                    21,
-//                    Card("1234 5687 7777 8888", 100000)
-//                )
-//            ).addOnSuccessListener {
-//                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
-//            }.addOnFailureListener {
-//                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
-//            }
-//            database.child("+77025555566").setValue(
-//                Client(
-//                    "Kabdol",
-//                    "Beiymbet",
-//                    35,
-//                    Card("1234 5687 5555 6666", 100000),
-//                    bonus = 100
-//                )
-//            ).addOnSuccessListener {
-//                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
-//            }.addOnFailureListener {
-//                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
-//            }
-//            database.child("+77025553344").setValue(
-//                Client(
-//                    "Aliya",
-//                    "Zaparova",
-//                    30,
-//                    Card("1234 5687 3333 4444", 100000)
-//                )
-//            ).addOnSuccessListener {
-//                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
-//            }.addOnFailureListener {
-//                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
-//            }
-//        }
         return binding.root
     }
 
