@@ -51,6 +51,7 @@
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_payment_to_favourite.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_payments.xml" value="0.264" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_qr.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_rename.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_tabbed.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_transfer_to_client.xml" value="0.264" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/fragment_transfer_to_frequent.xml" value="0.25416666666666665" />
@@ -65,6 +66,9 @@
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/layout/thumb.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/menu/context_menu.xml" value="0.253125" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/menu/navigation.xml" value="0.264" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/menu/options_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/menu/options_menu_favourite.xml" value="0.253125" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/menu/options_menu_frequent.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/Project/app/src/main/res/xml/searchable.xml" value="0.25416666666666665" />
       </map>
     </option>

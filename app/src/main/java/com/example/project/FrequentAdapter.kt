@@ -7,15 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project.databinding.FrequentTransfersItemBinding
+import com.example.project.fragments.TransfersFragment
 import com.google.firebase.database.*
 
 class FrequentAdapter(
     private val listener: ListenerFrequent,
     private val frequentList: MutableList<FrequentTransfer>,
     private val context: Context,
-    private val database: DatabaseReference
+    private val database: DatabaseReference,
+    private val fragment: TransfersFragment
 ) : RecyclerView.Adapter<FrequentAdapter.FrequentHolder>() {
     class FrequentHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val binding = FrequentTransfersItemBinding.bind(item)
@@ -25,17 +29,19 @@ class FrequentAdapter(
             button: FrequentTransfer,
             listener: ListenerFrequent,
             mCtx: Context,
-            db: DatabaseReference
+            db: DatabaseReference,
+            fragment: TransfersFragment
         ) = with(binding) {
             imgFrequent.setImageResource(button.imageId)
             txtFrequent.text = button.title
-            binding.imgSettings.setOnClickListener {
+            imgSettings.setOnClickListener {
                 val popup = PopupMenu(mCtx, binding.imgSettings)
-                popup.inflate(R.menu.options_menu)
+                popup.inflate(R.menu.options_menu_frequent)
                 popup.setOnMenuItemClickListener { item ->
                     when (item.itemId) {
                         R.id.options_rename -> {
-                            Toast.makeText(mCtx, "Rename", Toast.LENGTH_SHORT).show()
+                            val bundle = bundleOf("title" to button.title)
+                            fragment.findNavController().navigate(R.id.action_transfersFragment_to_renameFragment, bundle)
                             true
                         }
                         R.id.options_delete -> {
@@ -84,7 +90,7 @@ class FrequentAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: FrequentHolder, position: Int) {
-        holder.bind(frequentList[position], listener, context, database)
+        holder.bind(frequentList[position], listener, context, database, fragment)
     }
 
     override fun getItemCount(): Int {

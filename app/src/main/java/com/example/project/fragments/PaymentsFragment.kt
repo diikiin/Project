@@ -10,6 +10,7 @@ import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.project.*
 import com.example.project.databinding.FragmentPaymentsBinding
 import com.google.firebase.database.DataSnapshot
@@ -45,6 +46,7 @@ class PaymentsFragment : Fragment(), FavouriteAdapter.ListenerFavourite {
         binding.imgPayment3.setOnClickListener {
             findNavController().navigate(R.id.action_paymentsFragment_to_paymentFragment)
         }
+
         return binding.root
     }
 
@@ -64,7 +66,7 @@ class PaymentsFragment : Fragment(), FavouriteAdapter.ListenerFavourite {
                                 )
                             )
                         }
-                        favouriteAdapter = FavouriteAdapter(this@PaymentsFragment, favouriteList)
+                        favouriteAdapter = FavouriteAdapter(this@PaymentsFragment, favouriteList, context!!, database)
                         binding.apply {
                             rcView.layoutManager = LinearLayoutManager(activity)
                             rcView.adapter = favouriteAdapter

@@ -85,7 +85,13 @@ class TransfersFragment : Fragment(), ButtonAdapter.Listener, FrequentAdapter.Li
                                 )
                             )
                         }
-                        frequentAdapter = FrequentAdapter(this@TransfersFragment, frequentList, context!!, database)
+                        frequentAdapter = FrequentAdapter(
+                            this@TransfersFragment,
+                            frequentList,
+                            context!!,
+                            database,
+                            this@TransfersFragment
+                        )
                         binding.apply {
                             rcView2.layoutManager = LinearLayoutManager(activity)
                             rcView2.adapter = frequentAdapter
