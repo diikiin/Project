@@ -1,10 +1,7 @@
 package com.example.project.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.core.os.bundleOf

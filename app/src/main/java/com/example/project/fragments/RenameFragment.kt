@@ -1,6 +1,5 @@
 package com.example.project.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -60,5 +59,4 @@ class RenameFragment : Fragment() {
         }
         return binding.root
     }
-
 }

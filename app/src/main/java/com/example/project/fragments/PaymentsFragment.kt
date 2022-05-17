@@ -10,7 +10,6 @@ import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.project.*
 import com.example.project.databinding.FragmentPaymentsBinding
 import com.google.firebase.database.DataSnapshot
